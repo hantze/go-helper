@@ -2,7 +2,7 @@ package db
 
 import (
 	"fmt"
-	"logger/internal/helper/formatter"
+	"helper/formatter"
 	"sync"
 )
 
