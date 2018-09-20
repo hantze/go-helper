@@ -35,6 +35,27 @@ func (qb *QueryBuilder) ExecUpdate(table string, columns []string, conditions []
 	return query
 }
 
+// ExecInsert ...
+func (qb *QueryBuilder) ExecInsert(table string, columns []string, primaryKey string) string {
+	var i int
+	field := ""
+	length := len(columns)
+	query := fmt.Sprintf("INSERT INTO \"%s\" (", table)
+	for i = 0; i < length-1; i++ {
+		field = fmt.Sprintf("%s\"%s\", ", field, columns[i])
+	}
+	field = fmt.Sprintf("%s\"%s\" ", field, columns[length-1])
+
+	query = fmt.Sprintf("%s%s) VALUES(", query, field)
+	field = ""
+	for i = 1; i < length; i++ {
+		field = fmt.Sprintf("%s$%d, ", field, i)
+	}
+	query = fmt.Sprintf("%s%s$%d)", query, field, length)
+
+	return query
+}
+
 // ExecInsertAutoIncrement ...
 func (qb *QueryBuilder) ExecInsertAutoIncrement(table string, columns []string, primaryKey string) string {
 	var i int
