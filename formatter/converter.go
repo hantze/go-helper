@@ -1,7 +1,6 @@
 package formatter
 
 import (
-	errorfazz "logger/internal/error"
 	"strconv"
 	"strings"
 
@@ -24,8 +23,7 @@ func GetURLParam(c *gin.Context, key string) interface{} {
 func StringToIntegerValidator(param string, field string) (int, error) {
 	val, err := strconv.Atoi(param)
 	if err != nil {
-
-		return 0, errorfazz.NewValidateError(field, " must be a number")
+		return 0, err
 	}
 	return val, nil
 }

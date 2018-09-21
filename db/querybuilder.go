@@ -2,8 +2,8 @@ package db
 
 import (
 	"fmt"
-	"logger/internal/helper/formatter"
 	"sync"
+	"test/formatter"
 )
 
 var once sync.Once

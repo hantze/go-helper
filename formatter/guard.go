@@ -1,8 +1,8 @@
 package formatter
 
 import (
+	"github.com/pkg/errors"
 	"html"
-	errorfazz "logger/internal/error"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -19,7 +19,7 @@ func GetQueryParams(c *gin.Context, param []string, term string) (map[string]str
 			if temp != nil && temp != "" {
 				results[v] = html.EscapeString(temp.(string))
 			} else {
-				return nil, errorfazz.NewValidateError(v, term)
+				return nil, errors.New("failed")
 			}
 		default:
 			if temp == nil || temp == "" {
